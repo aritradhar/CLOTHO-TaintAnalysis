@@ -1,4 +1,4 @@
 RepairingTaintAnalysis
 ======================
 
-Taint analysis for automated program repaiing 
+Taint analysis for automated program repairing
