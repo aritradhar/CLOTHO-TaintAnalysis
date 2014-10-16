@@ -4,9 +4,15 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import soot.Unit;
+import soot.jimple.Stmt;
 import soot.jimple.infoflow.Infoflow;
 import soot.jimple.infoflow.InfoflowResults;
+import soot.jimple.infoflow.InfoflowResults.SinkInfo;
+import soot.jimple.infoflow.InfoflowResults.SourceInfo;
 import soot.jimple.infoflow.source.DefaultSourceSinkManager;
 import soot.jimple.infoflow.taintWrappers.EasyTaintWrapper;
 
@@ -42,13 +48,13 @@ public class SourceSinkResolver {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		infoflow.computeInfoflow(args[0],
 				null, args[1], new DefaultSourceSinkManager(sources, sinks));
-		
+
 		this.results = infoflow.getResults();
 	}	
-	
+
 	/**
 	 * We need to decide what is the signature for the unit
 	 * @param sinkSignature
@@ -57,7 +63,7 @@ public class SourceSinkResolver {
 	public boolean isSink(String sinkSignature){
 		return results.containsSinkMethod(sinkSignature);
 	}
-	
+
 	/**
 	 * We need to decide what is the signature for the unit
 	 * @param sinkSignature
@@ -66,5 +72,28 @@ public class SourceSinkResolver {
 	public boolean isOnPathSourceSink(String sink, String source){
 		return results.isPathBetween(sink, source);
 	}
-	
+
+	@Override
+	public String toString(){
+		return results.toString();
+	}
+
+	public boolean isUnitOnPathSourceSink(Unit u){
+		Stmt stmt = (Stmt) u;
+		Map<SinkInfo, Set<SourceInfo>> res = results.getResults(); 
+		for (SinkInfo si : res.keySet()){
+			Set<SourceInfo> sources = res.get(si);
+			for (SourceInfo src : sources) {
+				if(src.getContext().equals(stmt))
+					return true;
+				for(Stmt path : src.path){
+					if(path.equals(stmt))
+						return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 }
