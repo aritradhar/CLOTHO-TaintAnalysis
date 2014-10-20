@@ -25,8 +25,11 @@
 <java.util.List: java.util.Iterator iterator()>()
 
 <java.util.Iterator: java.lang.Object next()>
+<java.util.Iterator: java.lang.Object next()>
 
 <java.util.ArrayList: void <init>(java.util.Collection)>
+<java.util.ArrayList: java.util.Iterator iterator()>()
+
 <java.util.LinkedList: void <init>(java.util.Collection)>
 
 <java.util.Set: boolean add(java.lang.Object)>
