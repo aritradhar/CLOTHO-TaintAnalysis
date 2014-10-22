@@ -8,7 +8,7 @@ public class SootConfigForProgramRepair implements IInfoflowConfig{
 	@Override
 	public void setSootOptions(Options options) {
 		// TODO Auto-generated method stub
-		Options.v().setPhaseOption("jb", "use-origional-name:true");
+		Options.v().setPhaseOption("jb", "use-original-names:true");
 	}
 
 }
