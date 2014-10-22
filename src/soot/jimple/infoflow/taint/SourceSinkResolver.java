@@ -123,14 +123,16 @@ public class SourceSinkResolver {
 	 * @return true if its safe to Patch the given unit
 	 */
 	public boolean isSafe(Unit u, SootMethod m, int i){
-		PatchingChain<Unit> pc = methodToChain.get(m.toString());
+		PatchingChain<Unit> pc = methodToChain.get(m.getSignature());
 		int ct = 0;
 		for(Unit uu : pc){
 			if(i == ct++){
 				if(u.equals(uu))
 					u = uu;
-				else 
+				else {
 					u = uu;
+					ps.println("Unit was not found Assuming the given unit is the expected unit");
+				}
 				break;
 			}
 		}
