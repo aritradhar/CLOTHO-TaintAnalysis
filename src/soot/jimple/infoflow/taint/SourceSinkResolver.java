@@ -96,15 +96,24 @@ public class SourceSinkResolver {
 			Map<SinkInfo, Set<SourceInfo>> res = results.getResults(); 
 			for (SinkInfo si : res.keySet()){
 				if(si.getContext().equals(stmt))
+				{
+					System.out.println(stmt);
 					return false;
+				}
 				
 				Set<SourceInfo> sources = res.get(si);
 				for (SourceInfo src : sources) {
 					if(src.getContext().equals(stmt))
+					{
+						System.out.println(stmt);
 						return false;
+					}
 					for(Stmt path : src.path){
 						if(path.equals(stmt))
+						{
+							System.out.println(stmt);
 							return false;
+						}
 					}
 				}
 			}
@@ -122,10 +131,16 @@ public class SourceSinkResolver {
 	 * @param i The iteration @which the unit was encountered
 	 * @return true if its safe to Patch the given unit
 	 */
-	public boolean isSafe(Unit u, SootMethod m, int i){
+	public boolean isSafe(Unit u, SootMethod m, int i)
+	{	
+		if(!methodToChain.containsKey(m.getSignature()))
+		{
+			return true;
+		}
 		PatchingChain<Unit> pc = methodToChain.get(m.getSignature());
 		int ct = 0;
-		for(Unit uu : pc){
+		for(Unit uu : pc)
+		{
 			if(i == ct++){
 				/*
 				 if(u.equals(uu))
