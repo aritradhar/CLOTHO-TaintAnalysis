@@ -48,6 +48,7 @@ public class SourceSinkResolver {
 
 		infoflow = new Infoflow();
 		infoflow.setSootConfig(new SootConfigForProgramRepair());
+		infoflow.setEnableImplicitFlows(true);
 		try {
 			infoflow.setTaintWrapper(new EasyTaintWrapper("EasyTaintWrapperSource.txt"));
 		} catch (IOException e) {
