@@ -1,0 +1,70 @@
+[main] INFO soot.jimple.infoflow.taintWrappers.EasyTaintWrapper - Loaded wrapper entries for 52 classes and 4 exclusions.
+[main] INFO soot.jimple.infoflow.Infoflow - Resetting Soot...
+Warning: java.lang.NoClassDefFoundError is a phantom class!
+Warning: java.lang.StringBuffer is a phantom class!
+Warning: java.lang.Boolean is a phantom class!
+Warning: java.lang.Long is a phantom class!
+Warning: java.lang.Integer is a phantom class!
+Warning: java.lang.Short is a phantom class!
+Warning: java.lang.Float is a phantom class!
+Warning: java.lang.Double is a phantom class!
+Warning: java.lang.Throwable is a phantom class!
+Warning: java.lang.Class is a phantom class!
+Warning: java.lang.Character is a phantom class!
+Warning: java.lang.AssertionError is a phantom class!
+Warning: java.lang.Byte is a phantom class!
+Warning: java.lang.Void is a phantom class!
+Warning: java.lang.ClassFormatError is a phantom class!
+Warning: java.lang.InstantiationError is a phantom class!
+Warning: java.lang.Runnable is a phantom class!
+Warning: java.lang.ref.Finalizer is a phantom class!
+Warning: java.lang.IncompatibleClassChangeError is a phantom class!
+Warning: java.lang.NoSuchFieldError is a phantom class!
+Warning: java.lang.StackOverflowError is a phantom class!
+Warning: java.lang.Thread is a phantom class!
+Warning: java.lang.IllegalAccessError is a phantom class!
+Warning: java.lang.ArrayStoreException is a phantom class!
+Warning: java.lang.NoSuchMethodError is a phantom class!
+Warning: java.lang.LinkageError is a phantom class!
+Warning: java.lang.ExceptionInInitializerError is a phantom class!
+Warning: java.lang.InternalError is a phantom class!
+Warning: java.lang.VerifyError is a phantom class!
+Warning: java.io.Serializable is a phantom class!
+Warning: java.lang.ArrayIndexOutOfBoundsException is a phantom class!
+Warning: java.lang.ClassCastException is a phantom class!
+Warning: java.lang.ArithmeticException is a phantom class!
+Warning: java.lang.IndexOutOfBoundsException is a phantom class!
+Warning: java.lang.AbstractMethodError is a phantom class!
+Warning: java.lang.Object is a phantom class!
+Warning: java.lang.ThreadDeath is a phantom class!
+Warning: java.lang.String is a phantom class!
+Warning: java.lang.UnknownError is a phantom class!
+Warning: java.lang.ClassCircularityError is a phantom class!
+Warning: java.lang.Cloneable is a phantom class!
+Warning: java.lang.NegativeArraySizeException is a phantom class!
+Warning: java.lang.UnsatisfiedLinkError is a phantom class!
+Warning: java.lang.Error is a phantom class!
+Warning: java.lang.OutOfMemoryError is a phantom class!
+Warning: java.lang.IllegalMonitorStateException is a phantom class!
+Warning: java.lang.RuntimeException is a phantom class!
+Warning: java.lang.NullPointerException is a phantom class!
+Warning: java.lang.ClassNotFoundException is a phantom class!
+[main] INFO soot.jimple.infoflow.Infoflow - Basic class loading done.
+Warning: java.io.InputStream is a phantom class!
+Warning: java.util.ArrayList is a phantom class!
+Warning: java.io.BufferedReader is a phantom class!
+Warning: java.util.List is a phantom class!
+Warning: java.io.PrintStream is a phantom class!
+Warning: java.io.InputStreamReader is a phantom class!
+Warning: java.lang.System is a phantom class!
+Warning: java.io.IOException is a phantom class!
+Warning: java.util.Iterator is a phantom class!
+Warning: java.io.Reader is a phantom class!
+[Call Graph] For information on where the call graph may be incomplete, use the verbose option to the cg phase.
+[main] INFO soot.jimple.infoflow.Infoflow - Callgraph has 5 edges
+[main] INFO soot.jimple.infoflow.Infoflow - Looking for sources and sinks...
+[main] INFO soot.jimple.infoflow.Infoflow - Source lookup done, found 2 sources and 2 sinks.
+[main] INFO soot.jimple.infoflow.Infoflow - Taint wrapper hits: 0
+[main] INFO soot.jimple.infoflow.Infoflow - Taint wrapper misses: 0
+[main] INFO soot.jimple.infoflow.Infoflow - IFDS problem with 197 forward and 3 backward edges solved, processing results...
+[main] WARN soot.jimple.infoflow.Infoflow - No results found.

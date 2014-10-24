@@ -93,6 +93,8 @@ public class SourceSinkResolver {
 	 */
 	public boolean isSafe(Unit u){
 		try{
+			if(null == u)
+				return true;
 			Stmt stmt = (Stmt) u;
 			Map<SinkInfo, Set<SourceInfo>> res = results.getResults(); 
 			for (SinkInfo si : res.keySet()){
