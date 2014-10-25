@@ -38,8 +38,9 @@ public class SourceSinkResolver {
 	/**
 	 * Runs the whole TaintAnalysis and stores the results inside a Map<Sink, Set<Source>> 
 	 * @param args[0] = path to jar file, args[1] EntryPoint for the program
+	 * @param keepOrigNames = true to keep origional names to true
 	 */
-	public SourceSinkResolver(String[] args){
+	public SourceSinkResolver(String[] args, boolean keepOrigNames){
 		if(args.length < 2) {
 			methodToChain = null;
 			ps.println("Invalid Arguments");
@@ -47,7 +48,8 @@ public class SourceSinkResolver {
 		}
 
 		infoflow = new Infoflow();
-		infoflow.setSootConfig(new SootConfigForProgramRepair());
+		if(keepOrigNames)
+			infoflow.setSootConfig(new SootConfigForProgramRepair());
 		infoflow.setEnableImplicitFlows(true);
 		try {
 			infoflow.setTaintWrapper(new EasyTaintWrapper("EasyTaintWrapperSource.txt"));
