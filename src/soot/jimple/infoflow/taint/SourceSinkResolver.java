@@ -64,6 +64,34 @@ public class SourceSinkResolver {
 		this.methodToChain = infoflow.getMethodToChain();
 		this.results = infoflow.getResults();
 	}	
+	
+	/**
+	 * Runs the whole TaintAnalysis and stores the results inside a Map<Sink, Set<Source>> 
+	 * @param args[0] = path to jar file, args[1] EntryPoint for the program
+	 */
+	public SourceSinkResolver(String[] args){
+		if(args.length < 2) {
+			methodToChain = null;
+			ps.println("Invalid Arguments");
+			return;
+		}
+
+		infoflow = new Infoflow();
+		infoflow.setEnableImplicitFlows(true);
+		
+		try {
+			infoflow.setTaintWrapper(new EasyTaintWrapper("EasyTaintWrapperSource.txt"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		infoflow.computeInfoflow(args[0],
+				null, args[1], new DefaultSourceSinkManager(sources, sinks));
+
+		this.methodToChain = infoflow.getMethodToChain();
+		this.results = infoflow.getResults();
+	}	
 
 	/**
 	 * We need to decide what is the signature for the unit
