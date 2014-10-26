@@ -20,12 +20,12 @@ import soot.jimple.infoflow.taintWrappers.EasyTaintWrapper;
 
 public class SourceSinkResolver {
 
-	final PrintStream ps = System.out;
+	static final PrintStream ps = System.out;
 	private Infoflow infoflow;
 	private InfoflowResults results;
 
-	static final List<String> sources = new ArrayList<String>();
-	static final List<String> sinks = new ArrayList<String>();
+	public static final List<String> sources = new ArrayList<String>();
+	public static final List<String> sinks = new ArrayList<String>();
 
 	private HashMap<String, PatchingChain<Unit>> methodToChain;
 	private String[] args = null;
@@ -204,6 +204,11 @@ public class SourceSinkResolver {
 			}
 		}
 		return isSafe(u);
+	}
+	
+	public static void printSourceSink(){
+		ps.println("Sources\n" + SourceSinkResolver.sources);
+		ps.println("Sinks\n" + SourceSinkResolver.sinks);
 	}
 
 	/**

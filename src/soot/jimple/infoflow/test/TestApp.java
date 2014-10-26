@@ -11,8 +11,18 @@ public class TestApp {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		SourceSinkResolver ssr = new SourceSinkResolver(args, false);
-		ssr.setAccessPathLength(3);
+		String[] args1 = new String[]{
+				//*
+				"D:\\BTSync\\Thesis\\RepairingTaintAnalysis\\8085sim.jar",
+				"<sim.MainFrame: void main(java.lang.String[])>"
+				//*/
+				/*
+				"D:\\BTSync\\Thesis\\test.jar",
+				"<soot.jimple.infoflow.test.Test1: void main(java.lang.String[])>"
+				// */
+				};
+		SourceSinkResolver ssr = new SourceSinkResolver(args1, false);
+		//ssr.setAccessPathLength(3);
 		ssr.runAnalysis();
 		System.out.println(ssr.toStringMethodToChainMap());
 	}
