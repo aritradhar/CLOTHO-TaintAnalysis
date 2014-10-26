@@ -12,6 +12,7 @@ public class TestApp {
 		// TODO Auto-generated method stub
 		
 		SourceSinkResolver ssr = new SourceSinkResolver(args, true);
+		ssr.runAnalysis();
 		System.out.println(ssr.toStringMethodToChainMap());
 	}
 }

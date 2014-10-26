@@ -1,6 +1,5 @@
 package soot.jimple.infoflow.taint;
 
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +27,9 @@ public class SourceSinkResolver {
 	static final List<String> sources = new ArrayList<String>();
 	static final List<String> sinks = new ArrayList<String>();
 
-	private final HashMap<String, PatchingChain<Unit>> methodToChain;
+	private HashMap<String, PatchingChain<Unit>> methodToChain;
+	private String[] args = null;
+	private int accessPathLength = 5;
 
 	static{
 		TaintSourceSinkManager.setSourceSink("SourcesAndSinks.txt", sources, sinks);
@@ -41,57 +42,72 @@ public class SourceSinkResolver {
 	 * @param keepOrigNames = true to keep origional names to true
 	 */
 	public SourceSinkResolver(String[] args, boolean keepOrigNames){
-		if(args.length < 2) {
-			methodToChain = null;
-			ps.println("Invalid Arguments");
-			return;
+		if(setArgs(args)){
+			this.args = args;
+			infoflow = new Infoflow();
+			if(keepOrigNames)
+				infoflow.setSootConfig(new SootConfigForProgramRepair());
 		}
-
-		infoflow = new Infoflow();
-		if(keepOrigNames)
-			infoflow.setSootConfig(new SootConfigForProgramRepair());
-		infoflow.setEnableImplicitFlows(true);
-		try {
-			infoflow.setTaintWrapper(new EasyTaintWrapper("EasyTaintWrapperSource.txt"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		infoflow.computeInfoflow(args[0],
-				null, args[1], new DefaultSourceSinkManager(sources, sinks));
-
-		this.methodToChain = infoflow.getMethodToChain();
-		this.results = infoflow.getResults();
 	}	
-	
+
 	/**
 	 * Runs the whole TaintAnalysis and stores the results inside a Map<Sink, Set<Source>> 
 	 * @param args[0] = path to jar file, args[1] EntryPoint for the program
 	 */
 	public SourceSinkResolver(String[] args){
-		if(args.length < 2) {
-			methodToChain = null;
+		if(setArgs(args)){
+			this.args = args;
+			infoflow = new Infoflow();
+		}
+	}
+
+	/**
+	 * Sets the arguments for the analysis
+	 * @param args args[0] = path to jar file, args[1] = EntryPoint for the program
+	 * @return true if arguments are OK
+	 */
+	public boolean setArgs(String[] args){
+		if(args.length != 2) {
 			ps.println("Invalid Arguments");
-			return;
+			return false;
+		} else{
+			this.args = args;
+			return true;
 		}
+	}
+	
+	/**
+	 * 
+	 * @param accessPathLength the maximum value of an access path. Lesser the no. 
+	 * better performance but imprecise analysis
+	 * Default value is 5. Min = 1
+	 */
+	public void setAccessPathLength(int accessPathLength){
+		this.accessPathLength = accessPathLength;
+	}
 
-		infoflow = new Infoflow();
-		infoflow.setEnableImplicitFlows(true);
+	public boolean runAnalysis(){
+		if(args == null){
+			ps.println("args not set please use setArgs(String[] args) to set it");
+			return false;
+		}
+		else {
+			try{
+				Infoflow.setAccessPathLength(accessPathLength);
+				infoflow.setEnableImplicitFlows(true);
+				infoflow.setTaintWrapper(new EasyTaintWrapper("EasyTaintWrapperSource.txt"));
+				infoflow.computeInfoflow(args[0],
+						null, args[1], new DefaultSourceSinkManager(sources, sinks));
+
+				this.methodToChain = infoflow.getMethodToChain();
+				this.results = infoflow.getResults();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
-		try {
-			infoflow.setTaintWrapper(new EasyTaintWrapper("EasyTaintWrapperSource.txt"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		infoflow.computeInfoflow(args[0],
-				null, args[1], new DefaultSourceSinkManager(sources, sinks));
-
-		this.methodToChain = infoflow.getMethodToChain();
-		this.results = infoflow.getResults();
-	}	
+		return true;
+	}
 
 	/**
 	 * We need to decide what is the signature for the unit
@@ -133,7 +149,7 @@ public class SourceSinkResolver {
 					System.out.println(stmt);
 					return false;
 				}
-				
+
 				Set<SourceInfo> sources = res.get(si);
 				for (SourceInfo src : sources) {
 					if(src.getContext().equals(stmt))
@@ -156,7 +172,7 @@ public class SourceSinkResolver {
 
 		return true;
 	}
-	
+
 	/**
 	 * The unit to check for taint
 	 * @param u Unit to check
@@ -189,7 +205,7 @@ public class SourceSinkResolver {
 		}
 		return isSafe(u);
 	}
-	
+
 	/**
 	 * @return String representation of the Map Stored
 	 */
