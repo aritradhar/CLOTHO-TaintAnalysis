@@ -25,7 +25,7 @@ public class TaintSourceSinkManager extends DefaultSourceSinkManager{
 			BufferedReader br = new BufferedReader(new FileReader(sourceSink));
 			String line;
 			while(null != ( line = br.readLine())){
-				if(line.startsWith("%")) 
+				if(line.startsWith("%") || line.equals("")) 
 					continue;
 				
 				if(line.endsWith("_SINK_")) {

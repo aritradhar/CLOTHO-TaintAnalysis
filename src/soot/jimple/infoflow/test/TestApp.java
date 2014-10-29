@@ -21,7 +21,7 @@ public class TestApp {
 				"<soot.jimple.infoflow.test.Test1: void main(java.lang.String[])>"
 				// */
 				};
-		SourceSinkResolver ssr = new SourceSinkResolver(args1, false);
+		SourceSinkResolver ssr = new SourceSinkResolver(args1, true);
 		//ssr.setAccessPathLength(3);
 		ssr.runAnalysis();
 		System.out.println(ssr.toStringMethodToChainMap());
