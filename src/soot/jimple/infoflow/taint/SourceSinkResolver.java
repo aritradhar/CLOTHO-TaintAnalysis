@@ -182,7 +182,7 @@ public class SourceSinkResolver {
 	 */
 	public boolean isSafe(Unit u, SootMethod m, int i)
 	{	
-		if(!methodToChain.containsKey(m.getSignature()))
+		if(null == methodToChain || !methodToChain.containsKey(m.getSignature()))
 		{
 			return true;
 		}
