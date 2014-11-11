@@ -1,6 +1,12 @@
 <java.net.URLConnection: java.io.OutputStream getOutputStream()> -> _SOURCE_
 <java.net.URLConnection: java.io.InputStream getInputStream()> -> _SOURCE_
 
+<java.io.PrintStream: void println(int)> -> _SINK_
+<java.io.PrintStream: void println(java.lang.String)> -> _SINK_
+
+<java.io.InputStreamReader: void <init> -> _SOURCE_
+<java.io.BufferedReader: java.lang.String readLine()> -> _SOURCE_
+
 <java.io.OutputStream: void <init>()> -> _SOURCE_
 <java.io.InputStream: void <init>()> -> _SOURCE_
 <java.io.InputStream: int read(byte[])> -> _SOURCE_
