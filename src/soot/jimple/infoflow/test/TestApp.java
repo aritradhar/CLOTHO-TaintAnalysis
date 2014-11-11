@@ -12,12 +12,12 @@ public class TestApp {
 		// TODO Auto-generated method stub
 		
 		String[] args1 = new String[]{
-				//*
-				"D:\\BTSync\\Thesis\\RepairingTaintAnalysis\\8085sim.jar",
-				"<sim.MainFrame: void main(java.lang.String[])>"
-				//*/
 				/*
-				"D:\\BTSync\\Thesis\\test.jar",
+				"C:\\Users\\Aritra\\workspace\\Repair_TaintAnalysis\\Test1.jar",
+				"<Test1: void main(java.lang.String[])>"
+				//*/
+				//*
+				"C:\\Users\\Aritra\\workspace\\Repair_TaintAnalysis\\Test1.jar",
 				"<soot.jimple.infoflow.test.Test1: void main(java.lang.String[])>"
 				// */
 				};

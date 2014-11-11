@@ -146,7 +146,7 @@ public class SourceSinkResolver {
 			for (SinkInfo si : res.keySet()){
 				if(si.getContext().equals(stmt))
 				{
-					System.out.println(stmt);
+					//System.out.println(stmt);
 					return false;
 				}
 
@@ -160,7 +160,7 @@ public class SourceSinkResolver {
 					for(Stmt path : src.path){
 						if(path.equals(stmt))
 						{
-							System.out.println(stmt);
+							//System.out.println(stmt);
 							return false;
 						}
 					}
