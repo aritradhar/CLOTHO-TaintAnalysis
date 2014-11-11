@@ -2,7 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="BuildPathClass/soot-trunk.jar" sourcepath="C:/sootfiles/sootsrc-2.5.0.jar"/>
+	<classpathentry kind="lib" path="BuildPathClass/soot-trunk.jar" sourcepath="D:/BTSync/Thesis/soot-class-2.5.jar"/>
 	<classpathentry kind="lib" path="BuildPathClass/InfoFlow.jar"/>
+	<classpathentry kind="lib" path="jperf.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
