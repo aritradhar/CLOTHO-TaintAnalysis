@@ -8,24 +8,6 @@
 <com.puppycrawl.tools.checkstyle.Main: void usage()> -> _SOURCE_
 <com.puppycrawl.tools.checkstyle.Main: void usage()> -> _SINK_
 
-
-<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getFileName()> -> _SOURCE_
-<com.puppycrawl.tools.checkstyle.XMLLogger: java.lang.String encode(java.lang.String)> -> _SOURCE_
-<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()>  -> _SOURCE_
-<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getMessage()>  -> _SOURCE_
-<com.puppycrawl.tools.checkstyle.api.AuditEvent: int getLine()> -> _SOURCE_
-<com.puppycrawl.tools.checkstyle.api.AuditEvent: int getColumn()> -> _SOURCE_
-<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getSourceName()> -> _SOURCE_
-
-<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getFileName()> -> _SINK_
-<com.puppycrawl.tools.checkstyle.XMLLogger: java.lang.String encode(java.lang.String)> -> _SINK_
-<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()> -> _SINK_
-<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getMessage()> -> _SINK_
-<com.puppycrawl.tools.checkstyle.api.AuditEvent: int getLine()> -> _SINK_
-<com.puppycrawl.tools.checkstyle.api.AuditEvent: int getColumn()> -> _SINK_
-<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getSourceName()> -> _SINK_
-
-
 <java.io.BufferedReader: java.lang.String readLine()> -> _SOURCE_
 <javax.swing.JTextField: void <init>() -> _SOURCE_
 <javax.swing.JTextField: void setDocument(javax.swing.text.Document) -> _SINK_
@@ -87,3 +69,38 @@
 <java.net.URL: void <init>(java.lang.String)> -> _SINK_
 <java.net.URL: void <init>(java.net.URL,java.lang.String)> -> _SINK_
 <java.net.URL: void <init>(java.net.URL,java.lang.String,java.net.URLStreamHandler)> -> _SINK_
+<com.puppycrawl.tools.checkstyle.Main: java.util.List getFilesToProcess(org.apache.commons.cli.CommandLine)> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.Utils: org.apache.commons.logging.Log getExceptionLogger()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String,int)> -> _SINK_
+<com.puppycrawl.tools.checkstyle.Checker: void setModuleClassLoader(java.lang.ClassLoader)> -> _SOURCE_
+<com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.api.Configuration getConfiguration()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: int getCount()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.lang.String[] getAttributeNames()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.lang.String getAttribute(java.lang.String)> -> _SINK_
+<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.lang.String getName()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.DefaultConfiguration: com.puppycrawl.tools.checkstyle.api.Configuration[] getChildren()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.AutomaticBean: void setupChild(com.puppycrawl.tools.checkstyle.api.Configuration)> -> _SOURCE_
+<com.puppycrawl.tools.checkstyle.Checker: void setupChild(com.puppycrawl.tools.checkstyle.api.Configuration)> -> _SOURCE_
+<com.puppycrawl.tools.checkstyle.PackageNamesLoader: java.util.Set getPackageNames(java.lang.ClassLoader)> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void setLocale(java.util.Locale)> -> _SOURCE_
+<com.puppycrawl.tools.checkstyle.XMLLogger: void setOutputStream(java.io.OutputStream)> -> _SOURCE_
+<com.puppycrawl.tools.checkstyle.Checker: java.lang.String getStrippedFileName(java.lang.String)> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.Utils: java.lang.String getStrippedFileName(java.lang.String,java.lang.String)> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.SeverityLevel: java.lang.String getName()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.PackageNamesLoader: java.util.Set getPackageNames()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getFileName()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getMessage()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.AuditEvent: int getLine()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.AuditEvent: int getColumn()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getSourceName()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.DefaultContext: com.google.common.collect.ImmutableCollection getAttributeNames()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.DefaultContext: java.lang.Object get(java.lang.String)> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String getMessage()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int getLineNo()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int getColumnNo()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String getSourceName()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String getCustomMessage()> -> _SINK_
+<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.util.ResourceBundle getBundle(java.lang.String)> -> _SINK_
