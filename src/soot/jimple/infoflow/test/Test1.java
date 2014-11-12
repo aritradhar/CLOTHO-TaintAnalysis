@@ -12,28 +12,25 @@ public class Test1 {
 	}
 
 	public void work() throws IOException{
-		Runnable r = new Runnable(){
-
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
-				int x;
-				try {
-					x = Integer.parseInt(new String(is.readLine()));
-					int y = x;
-					System.out.println(y);
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}				
-		};
-		
-		new Thread(r).start();
+		BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
+		int x;
+		try {
+			x = Integer.parseInt(new String(is.readLine()));
+			int y = x;
+			System.out.println(y);
+			String s = is.readLine();
+			String s1 = "Aritra Dhar";
+			System.out.println(s);
+			
+			String st = s.substring(1, 61);
+			
+			System.out.println(st);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
 }

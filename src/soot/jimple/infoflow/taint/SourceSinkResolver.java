@@ -75,7 +75,7 @@ public class SourceSinkResolver {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param accessPathLength the maximum value of an access path. Lesser the no. 
@@ -105,7 +105,7 @@ public class SourceSinkResolver {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return true;
 	}
 
@@ -205,7 +205,7 @@ public class SourceSinkResolver {
 		}
 		return isSafe(u);
 	}
-	
+
 	public static void printSourceSink(){
 		ps.println("Sources\n" + SourceSinkResolver.sources);
 		ps.println("Sinks\n" + SourceSinkResolver.sinks);

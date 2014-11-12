@@ -4,10 +4,6 @@
 <java.io.PrintStream: void println(int)> -> _SINK_
 <java.io.PrintStream: void println(java.lang.String)> -> _SINK_
 
-<soot.jimple.infoflow.Infoflow: void <init>()> -> _SOURCE_
-<com.puppycrawl.tools.checkstyle.Main: void usage()> -> _SOURCE_
-<com.puppycrawl.tools.checkstyle.Main: void usage()> -> _SINK_
-
 <java.io.BufferedReader: java.lang.String readLine()> -> _SOURCE_
 <javax.swing.JTextField: void <init>() -> _SOURCE_
 <javax.swing.JTextField: void setDocument(javax.swing.text.Document) -> _SINK_
