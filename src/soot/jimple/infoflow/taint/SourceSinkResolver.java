@@ -2,7 +2,9 @@ package soot.jimple.infoflow.taint;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,6 +17,8 @@ import soot.jimple.infoflow.Infoflow;
 import soot.jimple.infoflow.InfoflowResults;
 import soot.jimple.infoflow.InfoflowResults.SinkInfo;
 import soot.jimple.infoflow.InfoflowResults.SourceInfo;
+import soot.jimple.infoflow.entryPointCreators.DefaultEntryPointCreator;
+import soot.jimple.infoflow.entryPointCreators.IEntryPointCreator;
 import soot.jimple.infoflow.source.DefaultSourceSinkManager;
 import soot.jimple.infoflow.taintWrappers.EasyTaintWrapper;
 
@@ -30,6 +34,8 @@ public class SourceSinkResolver {
 	private HashMap<String, PatchingChain<Unit>> methodToChain;
 	private String[] args = null;
 	private int accessPathLength = 5;
+	
+	private int unsafeCount = -1, safeCount = -1;
 
 	static{
 		TaintSourceSinkManager.setSourceSink("SourcesAndSinks.txt", sources, sinks);
@@ -67,7 +73,7 @@ public class SourceSinkResolver {
 	 * @return true if arguments are OK
 	 */
 	public boolean setArgs(String[] args){
-		if(args.length != 2) {
+		if(args.length < 2) {
 			ps.println("Invalid Arguments");
 			return false;
 		} else{
@@ -93,10 +99,22 @@ public class SourceSinkResolver {
 		}
 		else {
 			try{
+				Collection<String> methodsToCall;
+				IEntryPointCreator entryPoints;
 				Infoflow.setAccessPathLength(accessPathLength);
 				infoflow.setEnableImplicitFlows(true);
 				infoflow.setTaintWrapper(new EasyTaintWrapper("EasyTaintWrapperSource.txt"));
-				infoflow.computeInfoflow(args[0],
+				if(args.length > 2){
+					methodsToCall = new ArrayList<String>();
+					for(int i = 1; i < args.length; i++){
+						methodsToCall.add(args[i]);
+					}
+					entryPoints = new DefaultEntryPointCreator(methodsToCall);
+					infoflow.computeInfoflow(args[0],
+							null, entryPoints, new DefaultSourceSinkManager(sources, sinks));
+				}
+				else 
+					infoflow.computeInfoflow(args[0],
 						null, args[1], new DefaultSourceSinkManager(sources, sinks));
 
 				this.methodToChain = infoflow.getMethodToChain();
@@ -216,6 +234,32 @@ public class SourceSinkResolver {
 	 */
 	public String toStringMethodToChainMap(){
 		return methodToChain.toString();
+	}
+	
+	public int getUnsafeUnitCount(){
+		if(unsafeCount != -1)
+			return unsafeCount;
+		HashSet<Unit> unsafeUnits = new HashSet<Unit>();
+		for (SinkInfo si : results.getResults().keySet()){
+			Set<SourceInfo> sources = results.getResults().get(si);
+			unsafeUnits.add(si.getContext());
+			for (SourceInfo src : sources) {
+				unsafeUnits.add(src.getContext());
+				for(Stmt path : src.path){
+					unsafeUnits.add(path);
+				}
+			}
+		}
+		safeCount = infoflow.getUnitCount() - unsafeUnits.size();
+		return unsafeCount = unsafeUnits.size();
+	}
+	
+	public int getSafeUnitCount(){
+		return safeCount != -1 ? safeCount:infoflow.getUnitCount() - getUnsafeUnitCount(); 
+	}
+	
+	public int getUnitCount(){
+		return infoflow.getUnitCount();
 	}
 
 }
